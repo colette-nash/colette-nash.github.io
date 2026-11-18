@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design tokens — Colette Nash</title>
+  <meta name="description"
+    content="The design token foundation for Colette Nash's portfolio: colour, typography, space, elevation and motion, with measured WCAG contrast ratios.">
+  <script src="../theme.js"></script>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <nav class="ds-nav on-inverse" aria-label="Design system">
+    <div class="container">
+      <a class="ds-nav__home" href="../index.html">Colette Nash</a>
+      <div class="nav-actions">
+        <ul>
+          <li><a href="index.html" aria-current="page">Tokens</a></li>
+          <li><a href="components.html">Components</a></li>
+        </ul>
+        <button class="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false" hidden>
+          <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+          <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-header on-inverse">
+    <div class="container">
+      <p class="eyebrow">Design system</p>
+      <h1>Design tokens</h1>
+      <p class="lede">
+        The foundation layer for every component on this site. Primitives hold the raw palette;
+        semantic tokens are what components actually consume, so the system can be rethemed in one
+        place. Every contrast ratio below is measured, not estimated.
+      </p>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container">
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="colour">
+        <h2 id="colour">Colour</h2>
+
+        <h3>Primitives</h3>
+        <p class="note">
+          The raw palette. Components never reference these directly.
+        </p>
+
+        <h4>Gray — true black through white. Carries everything structural.</h4>
+        <ul class="swatches" role="list">
+          <li><span class="swatch" style="--swatch: var(--gray-1000)"></span><span class="swatch-name">gray-1000 ★</span><span class="swatch-hex">#000000</span></li>
+          <li><span class="swatch" style="--swatch: var(--gray-900)"></span><span class="swatch-name">gray-900</span><span class="swatch-hex">#111111</span></li>
+          <li><span class="swatch" style="--swatch: var(--gray-800)"></span><span class="swatch-name">gray-800</span><span class="swatch-hex">#1f1f1f</span></li>
+          <li><span class="swatch" style="--swatch: var(--gray-700)"></span><span class="swatch-name">gray-700</span><span class="swatch-hex">#3a3a3a</span></li>
+          <li><span class="swatch" style="--swatch: var(--gray-600)"></span><span class="swatch-name">gray-600</span><span class="swatch-hex">#505050</span></li>
+          <li><span class="swatch" style="--swatch: var(--gray-500)"></span><span class="swatch-name">gray-500</span><span class="swatch-hex">#6b6b6b</span></li>
+          <li><span class="swatch" style="--swatch: var(--gray-400)"></span><span class="swatch-name">gray-400</span><span class="swatch-hex">#8a8a8a</span></li>
+          <li><span class="swatch" style="--swatch: var(--gray-300)"></span><span class="swatch-name">gray-300</span><span class="swatch-hex">#a3a3a3</span></li>
+          <li><span class="swatch" style="--swatch: var(--gray-200)"></span><span class="swatch-name">gray-200</span><span class="swatch-hex">#d4d4d4</span></li>
+          <li><span class="swatch" style="--swatch: var(--gray-100)"></span><span class="swatch-name">gray-100</span><span class="swatch-hex">#e5e5e5</span></li>
+          <li><span class="swatch" style="--swatch: var(--gray-75)"></span><span class="swatch-name">gray-75</span><span class="swatch-hex">#efefef</span></li>
+          <li><span class="swatch" style="--swatch: var(--gray-50)"></span><span class="swatch-name">gray-50</span><span class="swatch-hex">#f7f7f7</span></li>
+          <li><span class="swatch" style="--swatch: var(--gray-0)"></span><span class="swatch-name">gray-0</span><span class="swatch-hex">#ffffff</span></li>
+        </ul>
+
+        <h4>Teal — the only non-neutral in the brand. Fills buttons and carries every link.</h4>
+        <ul class="swatches" role="list">
+          <li><span class="swatch" style="--swatch: var(--teal-900)"></span><span class="swatch-name">teal-900</span><span class="swatch-hex">#1f4542</span></li>
+          <li><span class="swatch" style="--swatch: var(--teal-800)"></span><span class="swatch-name">teal-800</span><span class="swatch-hex">#285a57</span></li>
+          <li><span class="swatch" style="--swatch: var(--teal-700)"></span><span class="swatch-name">teal-700</span><span class="swatch-hex">#3b7470</span></li>
+          <li><span class="swatch" style="--swatch: var(--teal-500)"></span><span class="swatch-name">teal-500 ★</span><span class="swatch-hex">#64a19d</span></li>
+          <li><span class="swatch" style="--swatch: var(--teal-300)"></span><span class="swatch-name">teal-300</span><span class="swatch-hex">#7fb5b1</span></li>
+          <li><span class="swatch" style="--swatch: var(--teal-200)"></span><span class="swatch-name">teal-200</span><span class="swatch-hex">#a9d0cd</span></li>
+          <li><span class="swatch" style="--swatch: var(--teal-100)"></span><span class="swatch-name">teal-100</span><span class="swatch-hex">#dcebea</span></li>
+          <li><span class="swatch" style="--swatch: var(--teal-50)"></span><span class="swatch-name">teal-50</span><span class="swatch-hex">#eef6f5</span></li>
+        </ul>
+
+        <p class="note">
+          ★ marks the source colours of the inspiration palette, used unchanged.
+          The teal cannot carry text on the light base at 2.75:1, so the darker steps exist
+          to do that work, and the source fills buttons with black text instead.
+        </p>
+
+        <h3>Status</h3>
+        <p class="note">
+          The brand is monochrome so that colour only ever means something. Apart from
+          the single teal, these four hues are the only colour in the system, and none of
+          them is ever used decoratively.
+        </p>
+
+        <h4>Green — success</h4>
+        <ul class="swatches" role="list">
+          <li><span class="swatch" style="--swatch: var(--green-800)"></span><span class="swatch-name">green-800</span><span class="swatch-hex">#2c5638</span></li>
+          <li><span class="swatch" style="--swatch: var(--green-700)"></span><span class="swatch-name">green-700</span><span class="swatch-hex">#3a6e48</span></li>
+          <li><span class="swatch" style="--swatch: var(--green-100)"></span><span class="swatch-name">green-100</span><span class="swatch-hex">#e4efe7</span></li>
+        </ul>
+
+        <h4>Blue — informational. More saturated than the teal so it never reads as a link.</h4>
+        <ul class="swatches" role="list">
+          <li><span class="swatch" style="--swatch: var(--blue-800)"></span><span class="swatch-name">blue-800</span><span class="swatch-hex">#17527b</span></li>
+          <li><span class="swatch" style="--swatch: var(--blue-700)"></span><span class="swatch-name">blue-700</span><span class="swatch-hex">#1a6091</span></li>
+          <li><span class="swatch" style="--swatch: var(--blue-100)"></span><span class="swatch-name">blue-100</span><span class="swatch-hex">#e3eef6</span></li>
+        </ul>
+
+        <h4>Amber — warnings only, used sparingly</h4>
+        <ul class="swatches" role="list">
+          <li><span class="swatch" style="--swatch: var(--amber-700)"></span><span class="swatch-name">amber-700</span><span class="swatch-hex">#93400f</span></li>
+          <li><span class="swatch" style="--swatch: var(--amber-600)"></span><span class="swatch-name">amber-600</span><span class="swatch-hex">#b44d12</span></li>
+          <li><span class="swatch" style="--swatch: var(--amber-500)"></span><span class="swatch-name">amber-500</span><span class="swatch-hex">#cb6e17</span></li>
+          <li><span class="swatch" style="--swatch: var(--amber-100)"></span><span class="swatch-name">amber-100</span><span class="swatch-hex">#f9e4c3</span></li>
+        </ul>
+
+        <h4>Red — errors and destructive actions. Steps spaced by L*, not by contrast ratio.</h4>
+        <ul class="swatches" role="list">
+          <li><span class="swatch" style="--swatch: var(--red-900)"></span><span class="swatch-name">red-900</span><span class="swatch-hex">#420d0a</span></li>
+          <li><span class="swatch" style="--swatch: var(--red-800)"></span><span class="swatch-name">red-800</span><span class="swatch-hex">#5e130f</span></li>
+          <li><span class="swatch" style="--swatch: var(--red-700)"></span><span class="swatch-name">red-700</span><span class="swatch-hex">#9e241d</span></li>
+          <li><span class="swatch" style="--swatch: var(--red-300)"></span><span class="swatch-name">red-300</span><span class="swatch-hex">#f2b8b5</span></li>
+          <li><span class="swatch" style="--swatch: var(--red-100)"></span><span class="swatch-name">red-100</span><span class="swatch-hex">#fae7e5</span></li>
+        </ul>
+
+        <aside class="callout">
+          <h4>Why these steps are spaced by L* rather than contrast ratio</h4>
+          <p>
+            Contrast ratio answers "can this text be read against that background". It says
+            nothing about whether two dark fills look different to each other. The first version
+            of the danger button moved from #9e241d to #8c1d18 on hover — a respectable-looking
+            change on paper, but only 4.6 ΔL* in CIE lightness, which is at the edge of what
+            anyone can perceive. In use the delete button appeared not to respond at all.
+          </p>
+          <p>
+            The interactive steps are now spaced by roughly 12–16 ΔL*, and every state pairs the
+            colour change with a second cue: filled buttons lift 1px and gain a shadow on hover,
+            then drop 1px and lose it on press. That 2px of travel is what makes the state
+            readable on a small target, and it keeps working for anyone who cannot distinguish
+            the two reds at all.
+          </p>
+        </aside>
+
+        <h3>Semantic tokens in context</h3>
+        <div class="specimen-grid">
+          <div class="specimen specimen--light">
+            <p class="specimen-label">On base surface</p>
+            <p class="t-primary">Primary text — the default for body copy and headings.</p>
+            <p class="t-secondary">Secondary text — supporting copy and metadata.</p>
+            <p class="t-muted">Muted text — captions and de-emphasised detail.</p>
+            <p><a href="#colour">An interactive link</a> within a sentence.</p>
+            <p class="t-disabled-demo">Disabled / large-text only — never body copy.</p>
+          </div>
+          <div class="specimen specimen--dark on-inverse">
+            <p class="specimen-label">On inverse surface</p>
+            <p class="t-on-dark">Primary text on dark — headings and body copy.</p>
+            <p class="t-on-dark-muted">Muted text on dark — supporting detail.</p>
+            <p><a class="link-on-dark" href="#colour">An interactive link</a> within a sentence.</p>
+          </div>
+        </div>
+
+        <h3>Measured contrast</h3>
+        <p class="note">
+          Computed with the WCAG 2.1 relative luminance formula. AA requires 4.5:1 for body text and
+          3:1 for large text; AAA requires 7:1. The table shows the light theme; every
+          dark theme pairing is measured too and documented in tokens.css.
+        </p>
+        <div class="table-wrap" tabindex="0" role="region" aria-labelledby="contrast-caption">
+          <table class="table">
+            <caption id="contrast-caption">Contrast ratios for every text and surface pairing in the system</caption>
+            <thead>
+              <tr>
+                <th scope="col">Pairing</th>
+                <th scope="col">Ratio</th>
+                <th scope="col">Grade</th>
+                <th scope="col">Permitted use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Primary text on base</th><td>17.63:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+              <tr><th scope="row">Secondary text on base</th><td>7.53:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+              <tr><th scope="row">Muted text on base</th><td>4.97:1</td><td><span class="badge badge--aa">AA</span></td><td>Body and above</td></tr>
+              <tr><th scope="row">Disabled text on base</th><td>3.22:1</td><td><span class="badge badge--large">Non-text</span></td><td>Disabled controls only</td></tr>
+              <tr><th scope="row">Primary text on raised surface</th><td>18.88:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+              <tr><th scope="row">Secondary text on raised surface</th><td>8.06:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+              <tr><th scope="row">Black on action teal</th><td>7.13:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Primary buttons, any size</td></tr>
+              <tr><th scope="row">Black on action teal, hover</th><td>9.15:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Primary buttons, any size</td></tr>
+              <tr><th scope="row">White on interactive teal</th><td>7.81:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Badges and fills, any size</td></tr>
+              <tr><th scope="row">Interactive teal on base</th><td>7.29:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Links, any size</td></tr>
+              <tr><th scope="row">Hover teal on base</th><td>9.86:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+              <tr><th scope="row">Base on inverse surface</th><td>19.60:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+              <tr><th scope="row">Muted text on inverse surface</th><td>8.33:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+              <tr><th scope="row">Teal link on inverse surface</th><td>9.15:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+              <tr><th scope="row">Teal highlight on inverse surface</th><td>7.13:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+              <tr><th scope="row">Teal on its own tint</th><td>7.11:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+              <tr><th scope="row">Strong border on base</th><td>3.22:1</td><td><span class="badge badge--large">Non-text</span></td><td>Control boundaries</td></tr>
+              <tr><th scope="row">Info blue on base</th><td>7.75:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+              <tr><th scope="row">Success green on base</th><td>7.86:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+              <tr><th scope="row">Warning amber on base</th><td>6.58:1</td><td><span class="badge badge--aa">AA</span></td><td>Body and above</td></tr>
+              <tr><th scope="row">Danger red on base</th><td>7.20:1</td><td><span class="badge badge--aaa">AAA</span></td><td>Any</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <aside class="callout">
+          <h4>Adapting an inspiration palette for accessibility</h4>
+          <p>
+            The palette started from an inspiration palette: black, a run of grays, and a
+            single muted teal. The teal measures 2.75:1 on the light base, below the 4.5:1
+            text floor, and the original sets white button text on it at 2.95:1. That is
+            normal: inspiration palettes are chosen to look good as large blocks, not to carry
+            words. Rather than abandon it, the teal keeps its original value and changes its
+            job. Black text on it measures 7.13:1, so it fills the primary button and the brand
+            colour becomes the thing you press. Darker steps take every link on a light surface,
+            and a lighter step takes links on black.
+          </p>
+          <p>
+            The brand is monochrome by decision rather than by accident. Apart from the single
+            teal, the four status colours are the only colour anywhere in the system — so when
+            something does turn green or amber, it always means something.
+          </p>
+        </aside>
+      </section>
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="typography">
+        <h2 id="typography">Typography</h2>
+        <p class="note">
+          The scale below is a 1.25 modular scale on a 1rem base, fluid between 320px and 1280px
+          viewports, set in the native system sans.
+        </p>
+
+        <ul class="type-scale" role="list">
+          <li><span class="type-meta">text-5xl</span><p class="ts ts-5xl">Designing systems, not screens</p></li>
+          <li><span class="type-meta">text-4xl</span><p class="ts ts-4xl">Designing systems, not screens</p></li>
+          <li><span class="type-meta">text-3xl</span><p class="ts ts-3xl">Designing systems, not screens</p></li>
+          <li><span class="type-meta">text-2xl</span><p class="ts ts-2xl">Designing systems, not screens</p></li>
+          <li><span class="type-meta">text-xl</span><p class="ts ts-xl">Designing systems, not screens</p></li>
+          <li><span class="type-meta">text-lg</span><p class="ts ts-lg">Designing systems, not screens</p></li>
+          <li><span class="type-meta">text-base</span><p class="ts ts-base">Designing systems, not screens</p></li>
+          <li><span class="type-meta">text-sm</span><p class="ts ts-sm">Designing systems, not screens</p></li>
+          <li><span class="type-meta">text-xs</span><p class="ts ts-xs">Designing systems, not screens</p></li>
+        </ul>
+
+        <h3>Measure and leading</h3>
+        <p class="measure-demo">
+          Body copy is capped at roughly 68 characters. Line length has more effect on reading
+          comfort than font size does: too long and the eye loses its place returning to the next
+          line, too short and the rhythm breaks. This paragraph sits at the default measure with
+          normal leading, which is the setting used for every long-form passage on the site.
+        </p>
+
+        <h3>Weights</h3>
+        <ul class="weights" role="list">
+          <li><span class="w-regular">Regular 400</span></li>
+          <li><span class="w-medium">Medium 500</span></li>
+          <li><span class="w-semibold">Semibold 600</span></li>
+          <li><span class="w-bold">Bold 700</span></li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="space">
+        <h2 id="space">Space</h2>
+        <p class="note">A 4px base grid. Section rhythm is fluid so vertical space tightens on small screens.</p>
+        <ul class="space-scale" role="list">
+          <li><span class="space-meta">3xs · 2px</span><span class="space-bar" style="--w: var(--space-3xs)"></span></li>
+          <li><span class="space-meta">2xs · 4px</span><span class="space-bar" style="--w: var(--space-2xs)"></span></li>
+          <li><span class="space-meta">xs · 8px</span><span class="space-bar" style="--w: var(--space-xs)"></span></li>
+          <li><span class="space-meta">sm · 12px</span><span class="space-bar" style="--w: var(--space-sm)"></span></li>
+          <li><span class="space-meta">md · 16px</span><span class="space-bar" style="--w: var(--space-md)"></span></li>
+          <li><span class="space-meta">lg · 24px</span><span class="space-bar" style="--w: var(--space-lg)"></span></li>
+          <li><span class="space-meta">xl · 32px</span><span class="space-bar" style="--w: var(--space-xl)"></span></li>
+          <li><span class="space-meta">2xl · 48px</span><span class="space-bar" style="--w: var(--space-2xl)"></span></li>
+          <li><span class="space-meta">3xl · 64px</span><span class="space-bar" style="--w: var(--space-3xl)"></span></li>
+          <li><span class="space-meta">4xl · 96px</span><span class="space-bar" style="--w: var(--space-4xl)"></span></li>
+          <li><span class="space-meta">5xl · 128px</span><span class="space-bar" style="--w: var(--space-5xl)"></span></li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="shape">
+        <h2 id="shape">Radius and elevation</h2>
+        <div class="shape-grid">
+          <figure class="shape"><div class="shape-box" style="border-radius: var(--radius-sm)"></div><figcaption>radius-sm · 4px</figcaption></figure>
+          <figure class="shape"><div class="shape-box" style="border-radius: var(--radius-md)"></div><figcaption>radius-md · 8px</figcaption></figure>
+          <figure class="shape"><div class="shape-box" style="border-radius: var(--radius-lg)"></div><figcaption>radius-lg · 12px</figcaption></figure>
+          <figure class="shape"><div class="shape-box" style="border-radius: var(--radius-full)"></div><figcaption>radius-full</figcaption></figure>
+        </div>
+        <div class="shape-grid">
+          <figure class="shape"><div class="shape-box shape-box--plain" style="box-shadow: var(--shadow-sm)"></div><figcaption>shadow-sm</figcaption></figure>
+          <figure class="shape"><div class="shape-box shape-box--plain" style="box-shadow: var(--shadow-md)"></div><figcaption>shadow-md</figcaption></figure>
+          <figure class="shape"><div class="shape-box shape-box--plain" style="box-shadow: var(--shadow-lg)"></div><figcaption>shadow-lg</figcaption></figure>
+        </div>
+        <p class="note">Shadows are true black at low opacity, so they lift a surface without adding a tint.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="motion">
+        <h2 id="motion">Motion and focus</h2>
+        <p class="note">
+          Durations collapse to zero when the operating system requests reduced motion — handled at
+          the token level so no component has to remember to.
+        </p>
+        <p>
+          <button class="btn btn--primary" type="button">Hover and focus me</button>
+          <button class="btn btn--secondary" type="button">Secondary</button>
+        </p>
+        <p class="note">
+          Tab to the buttons to see the focus ring: 3px, offset by 2px, near-black on light
+          surfaces and near-white on dark, so focus never looks like another shade of hover.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="page-footer on-inverse">
+    <div class="container">
+      <p>Design token reference — Colette Nash</p>
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,366 @@
+/* =========================================================================
+   Design tokens
+   Single source of truth for colour, type, space, and motion.
+   Contrast ratios in comments are measured, not estimated.
+   ========================================================================= */
+
+:root {
+  color-scheme: light;
+
+  /* -----------------------------------------------------------------------
+     1. Colour primitives
+     Raw palette. Do not reference these directly in components —
+     use the semantic tokens in section 2 instead.
+     ----------------------------------------------------------------------- */
+
+  /* Gray — true black through white. Carries everything structural.
+     Ratios measured against --gray-50, the light base surface. */
+  --gray-1000: #000000; /* 19.60:1 — the inverse surface */
+  --gray-950: #0a0a0a;  /* dark theme sunken surface */
+  --gray-900: #111111;  /* 17.63:1 */
+  --gray-800: #1f1f1f;
+  --gray-700: #3a3a3a;
+  --gray-600: #505050;  /*  7.53:1 */
+  --gray-500: #6b6b6b;  /*  4.97:1 — the floor for body text */
+  --gray-400: #8a8a8a;  /*  3.22:1 — non-text only: borders, icons */
+  --gray-300: #a3a3a3;  /*  8.33:1 on --gray-1000 — muted text on dark */
+  --gray-250: #adadad;  /* dark theme secondary text — 7.34:1 on --gray-800 */
+  --gray-200: #d4d4d4;  /*  1.38:1 — decorative. Never a control border. */
+  --gray-100: #e5e5e5;
+  --gray-75: #efefef;
+  --gray-50: #f7f7f7;   /* the light base surface */
+  --gray-0: #ffffff;    /* raised surfaces, lighter than the base */
+
+  /* Teal — the only non-neutral in the brand. The source at #64a19d is
+     2.75:1 on the base, which fails text, but black text on it is 7.13:1.
+     So the source fills buttons with black text, and the darker steps carry
+     anything that has to be read on a light surface. */
+  --teal-950: #15302e;  /* dark theme tint — --teal-200 on it 8.43:1 */
+  --teal-900: #1f4542;  /*  9.86:1 — hover */
+  --teal-800: #285a57;  /*  7.29:1 — links on light. Default. */
+  --teal-700: #3b7470;  /*  5.00:1 */
+  --teal-500: #64a19d;  /* source — black text on it 7.13:1 */
+  --teal-300: #7fb5b1;  /*  9.15:1 on --gray-1000 — links on dark */
+  --teal-200: #a9d0cd;  /* black text on it 12.59:1 */
+  --teal-100: #dcebea;
+  --teal-50: #eef6f5;
+
+  /* Status hues — the only colour in the system that is not neutral or teal.
+     Colour is reserved for meaning, so these four never appear decoratively. */
+
+  /* Blue — informational. Deliberately more saturated than the teal so an
+     info message never reads as a link. */
+  --blue-950: #0f2738;
+  --blue-800: #17527b; /*  7.75:1 */
+  --blue-700: #1a6091;
+  --blue-300: #8cc4ec;
+  --blue-100: #e3eef6;
+
+  /* Green — success */
+  --green-950: #12291a;
+  --green-800: #2c5638; /*  7.86:1 */
+  --green-700: #3a6e48;
+  --green-300: #8fcf9f;
+  --green-100: #e4efe7;
+
+  /* Amber — warnings only, used sparingly. The 600 step is 4.22:1 on its own
+     tint, which fails, so the 700 step carries both text roles. */
+  --amber-950: #33220c;
+  --amber-700: #93400f; /*  6.58:1 */
+  --amber-600: #b44d12;
+  --amber-500: #cb6e17;
+  --amber-300: #f0b46a;
+  --amber-100: #f9e4c3;
+
+  /* Red — errors and destructive actions only. These steps are spaced by CIE
+     L* rather than by contrast ratio, because contrast ratio does not describe
+     how different two dark fills look. Below about 12 ΔL*, a change on a
+     filled button goes unnoticed. */
+  --red-950: #3b1311;
+  --red-900: #420d0a; /* active  — L* 12.4 */
+  --red-800: #5e130f; /* hover   — L* 19.6, 15.7 ΔL* from default */
+  --red-700: #9e241d; /* default — L* 35.2, 7.20:1 */
+  --red-300: #f2b8b5;
+  --red-100: #fae7e5;
+
+  /* -----------------------------------------------------------------------
+     2. Semantic colour
+     What components actually reference. Renaming or retheming happens here.
+     ----------------------------------------------------------------------- */
+
+  /* Text — ratios measured against --surface-base (#f7f7f7) */
+  --text-primary: var(--gray-900);        /* 17.63:1 AAA */
+  --text-secondary: var(--gray-600);      /*  7.53:1 AAA */
+  --text-muted: var(--gray-500);          /*  4.97:1 AA  */
+  --text-on-dark: var(--gray-50);         /* 19.60:1 AAA on --surface-inverse */
+  --text-on-dark-muted: var(--gray-300);  /*  8.33:1 AAA on --surface-inverse */
+  --text-on-accent: var(--gray-0);        /*  7.81:1 AAA on --interactive-default */
+
+  /* --gray-400 is 3.22:1 on the base — clears the non-text threshold only.
+     Disabled text is exempt from contrast minimums; nothing else may use it. */
+  --text-disabled: var(--gray-400);
+
+  /* Surfaces. The light base is a near-white gray, so raised surfaces lift
+     to pure white and sunken surfaces drop a step. The inverse is true black. */
+  --surface-base: var(--gray-50);
+  --surface-raised: var(--gray-0);
+  --surface-sunken: var(--gray-75);
+  --surface-inverse: var(--gray-1000);
+  --surface-inverse-raised: var(--gray-800);
+  --surface-inverse-glow: var(--gray-700);
+
+  /* Borders. --gray-200 is fine as a divider, but it cannot carry a control
+     boundary. Anything a user has to identify as an interface element uses
+     --border-strong. */
+  --border-subtle: var(--gray-100);
+  --border-default: var(--gray-200);
+  --border-strong: var(--gray-400);       /*  3.22:1 — meets WCAG 1.4.11 */
+
+  /* Interactive — links, outlines and text-coloured controls. Each step is a
+     clear jump, and components pair the colour change with a second cue so
+     the state never depends on colour alone (WCAG 1.4.1). */
+  --interactive-default: var(--teal-800);       /*  7.29:1 AAA */
+  --interactive-hover: var(--teal-900);         /*  9.86:1 AAA */
+  --interactive-active: var(--gray-900);        /* 17.63:1 AAA */
+  --interactive-subtle: var(--teal-50);
+  --interactive-on-subtle: var(--teal-800);     /*  7.11:1 AAA on tint */
+  --interactive-on-dark: var(--teal-300);       /*  9.15:1 AAA on --surface-inverse */
+  --interactive-on-dark-hover: var(--gray-50);  /* 19.60:1 AAA on --surface-inverse */
+
+  /* Action — filled primary buttons. The source teal with black text, so the
+     brand colour is the thing you press. Hover and press lighten rather than
+     darken, because darker teal loses contrast against black text. */
+  --action-default: var(--teal-500);            /* black on it 7.13:1 AAA */
+  --action-hover: var(--teal-300);              /* black on it 9.15:1 AAA */
+  --action-active: var(--teal-200);             /* black on it 12.59:1 AAA */
+  --text-on-action: var(--gray-1000);
+
+  /* Destructive buttons. Kept apart from --status-danger, which is a text
+     colour: the dark theme lightens danger text but keeps this fill. */
+  --action-danger: var(--red-700);
+  --action-danger-hover: var(--red-800);
+  --action-danger-active: var(--red-900);
+  --text-on-danger: var(--gray-50);               /*  7.20:1 AAA */
+
+  /* Highlight — emphasis and decoration rather than actions. The source teal
+     sits here on light surfaces, where its 2.75:1 is acceptable because
+     nothing depends on reading it. */
+  --highlight: var(--teal-500);
+  --highlight-subtle: var(--teal-100);
+  --highlight-on-subtle: var(--teal-900);       /*  8.61:1 AAA on tint */
+  --highlight-on-dark: var(--teal-500);         /*  7.13:1 AAA on --surface-inverse */
+
+  /* Focus — near-black rather than teal, so focus and hover are two visibly
+     different signals rather than two shades of the same one. */
+  --focus-ring: var(--gray-900);                /* 17.63:1 */
+  --focus-ring-on-dark: var(--gray-50);         /* 19.60:1 on --surface-inverse */
+  --focus-ring-offset: var(--surface-base);
+  --focus-ring-width: 3px;
+  --focus-ring-offset-width: 2px;
+
+  /* Status
+     Each has a solid value for text and icons, a subtle tint for backgrounds,
+     and the text colour to use on that tint. Ratios measured against the
+     base surface unless stated. */
+  --status-info: var(--blue-800);                 /*  7.75:1 AAA */
+  --status-info-subtle: var(--blue-100);
+  --status-info-on-subtle: var(--blue-800);       /*  7.05:1 AAA on tint */
+
+  --status-success: var(--green-800);             /*  7.86:1 AAA */
+  --status-success-subtle: var(--green-100);
+  --status-success-on-subtle: var(--green-800);   /*  7.13:1 AAA on tint */
+
+  --status-warning: var(--amber-700);             /*  6.58:1 AA  */
+  --status-warning-subtle: var(--amber-100);
+  --status-warning-on-subtle: var(--amber-700);   /*  5.67:1 AA on tint */
+
+  --status-danger: var(--red-700);                /*  7.20:1 AAA */
+  --status-danger-subtle: var(--red-100);
+  --status-danger-on-subtle: var(--red-700);      /*  6.47:1 AA on tint */
+
+  /* -----------------------------------------------------------------------
+     3. Typography
+     Swap the family tokens to change the entire site's voice.
+     ----------------------------------------------------------------------- */
+
+  /* Native system sans, set small with generous leading. No network request,
+     and renders in the reader's own platform voice. */
+  --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  /* Modular scale, ratio 1.25 (major third), 1rem base.
+     Larger steps are fluid between 320px and 1280px viewports. */
+  --text-xs: 0.8rem;      /* 12.8px */
+  --text-sm: 0.9rem;      /* 14.4px */
+  --text-base: 1rem;      /* 16px   */
+  --text-lg: 1.25rem;     /* 20px   */
+  --text-xl: clamp(1.4rem, 1.25rem + 0.75vw, 1.5625rem);
+  --text-2xl: clamp(1.65rem, 1.4rem + 1.25vw, 1.953rem);
+  --text-3xl: clamp(1.95rem, 1.55rem + 2vw, 2.441rem);
+  --text-4xl: clamp(2.25rem, 1.65rem + 3vw, 3.052rem);
+  --text-5xl: clamp(2.6rem, 1.7rem + 4.5vw, 3.815rem);
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.3;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-label: 0.15em;   /* small uppercase labels and buttons */
+  --tracking-display: 0.2em;  /* the spaced capitals of the hero */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 600;
+
+  /* Caps at ~70ch for comfortable reading */
+  --measure: 68ch;
+  --measure-narrow: 52ch;
+
+  /* -----------------------------------------------------------------------
+     4. Space
+     4px base grid.
+     ----------------------------------------------------------------------- */
+
+  --space-3xs: 0.125rem;  /*  2px */
+  --space-2xs: 0.25rem;   /*  4px */
+  --space-xs: 0.5rem;     /*  8px */
+  --space-sm: 0.75rem;    /* 12px */
+  --space-md: 1rem;       /* 16px */
+  --space-lg: 1.5rem;     /* 24px */
+  --space-xl: 2rem;       /* 32px */
+  --space-2xl: 3rem;      /* 48px */
+  --space-3xl: 4rem;      /* 64px */
+  --space-4xl: 6rem;      /* 96px */
+  --space-5xl: 8rem;      /* 128px */
+
+  /* Section rhythm, fluid so vertical space tightens on small screens */
+  --space-section: clamp(3rem, 2rem + 5vw, 6rem);
+
+  /* -----------------------------------------------------------------------
+     5. Layout
+     ----------------------------------------------------------------------- */
+
+  --container-max: 72rem;      /* 1152px */
+  --container-narrow: 46rem;   /*  736px — long-form reading */
+  --container-gutter: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+
+  /* Breakpoints cannot be used in media queries as custom properties.
+     Listed here as the documented source of truth; keep media queries in sync.
+       sm  480px
+       md  768px
+       lg  1024px
+       xl  1280px */
+
+  /* -----------------------------------------------------------------------
+     6. Radius, elevation, borders
+     ----------------------------------------------------------------------- */
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 9999px;
+
+  --border-width: 1px;
+  --border-width-thick: 2px;
+
+  /* Shadows in true black, kept soft so they never compete with the content */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06), 0 1px 3px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 2px 4px rgb(0 0 0 / 0.06), 0 4px 12px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 4px 8px rgb(0 0 0 / 0.06), 0 12px 32px rgb(0 0 0 / 0.12);
+
+  /* -----------------------------------------------------------------------
+     7. Motion
+     ----------------------------------------------------------------------- */
+
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-entrance: cubic-bezier(0, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 1, 1);
+
+  /* -----------------------------------------------------------------------
+     8. Z-index
+     ----------------------------------------------------------------------- */
+
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+}
+
+/* -------------------------------------------------------------------------
+   Dark theme
+   Only semantic tokens change; no component knows which theme is active.
+   theme.js sets data-theme from the reader's saved choice, or from their
+   system setting if they have not chosen. Ratios are measured against the
+   dark base (--gray-900) and, after the slash, the raised card surface
+   (--gray-800). The nav, hero and footer are already black and stay so.
+   ------------------------------------------------------------------------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --text-primary: var(--gray-50);               /* 17.63 / 15.39 AAA */
+  --text-secondary: var(--gray-250);            /*  8.41 /  7.34 AAA */
+  --text-muted: var(--gray-400);                /*  5.47 /  4.77 AA  */
+  --text-disabled: var(--gray-500);             /*  3.54 /  3.09 — disabled only */
+  --text-on-accent: var(--gray-1000);           /*  9.15:1 on --teal-300 */
+
+  --surface-base: var(--gray-900);
+  --surface-raised: var(--gray-800);
+  --surface-sunken: var(--gray-950);
+
+  --border-subtle: var(--gray-800);
+  --border-default: var(--gray-700);
+  --border-strong: var(--gray-500);             /*  3.54 /  3.09 — WCAG 1.4.11 */
+
+  --interactive-default: var(--teal-300);       /*  8.22 /  7.18 AAA */
+  --interactive-hover: var(--teal-200);         /* 11.32 /  9.88 AAA */
+  --interactive-active: var(--gray-50);
+  --interactive-subtle: var(--teal-950);
+  --interactive-on-subtle: var(--teal-200);     /*  8.43:1 AAA on tint */
+
+  --highlight-subtle: var(--teal-950);
+  --highlight-on-subtle: var(--teal-200);       /*  8.43:1 AAA on tint */
+
+  --focus-ring: var(--gray-50);
+
+  --status-info: var(--blue-300);               /* 10.09 /  8.81 AAA */
+  --status-info-subtle: var(--blue-950);
+  --status-info-on-subtle: var(--blue-300);     /*  8.21:1 AAA on tint */
+  --status-success: var(--green-300);           /* 10.42 /  9.10 AAA */
+  --status-success-subtle: var(--green-950);
+  --status-success-on-subtle: var(--green-300); /*  8.54:1 AAA on tint */
+  --status-warning: var(--amber-300);           /* 10.29 /  8.98 AAA */
+  --status-warning-subtle: var(--amber-950);
+  --status-warning-on-subtle: var(--amber-300); /*  8.32:1 AAA on tint */
+  --status-danger: var(--red-300);              /* 11.06 /  9.65 AAA */
+  --status-danger-subtle: var(--red-950);
+  --status-danger-on-subtle: var(--red-300);    /*  9.55:1 AAA on tint */
+
+  /* Shadows barely show on a dark page, so a faint edge separates cards */
+  --shadow-sm: 0 0 0 1px rgb(255 255 255 / 0.06), 0 1px 3px rgb(0 0 0 / 0.5);
+  --shadow-md: 0 0 0 1px rgb(255 255 255 / 0.08), 0 4px 12px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 0 0 1px rgb(255 255 255 / 0.1), 0 12px 32px rgb(0 0 0 / 0.6);
+}
+
+/* Honour the OS reduced-motion preference at the token level so no component
+   has to remember to. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

@@ -1,0 +1,63 @@
+/* =========================================================================
+   CV page
+   Layout for cv/index.html, which build_web_cv.py generates from the CV's
+   Markdown source. Consumes tokens.css — no hard-coded values.
+   ========================================================================= */
+
+/* --- Header ------------------------------------------------------------- */
+
+.cv-contact {
+  margin: var(--space-md) 0 0;
+  color: var(--text-on-dark-muted);
+}
+
+.cv-contact a {
+  color: var(--interactive-on-dark);
+}
+
+@media (hover: hover) {
+  .cv-contact a:hover {
+    color: var(--interactive-on-dark-hover);
+    text-decoration-thickness: 3px;
+  }
+}
+
+.cv-download {
+  margin: var(--space-xl) 0 0;
+}
+
+/* --- Body --------------------------------------------------------------- */
+
+/* A CV has many short sections, so they sit closer than documentation */
+.cv section {
+  padding-block: var(--space-2xl);
+}
+
+/* Roles within Career History are subsections, not separate bands */
+.cv section section {
+  padding-block: 0;
+  border-bottom: 0;
+}
+
+.cv h2 {
+  font-size: var(--text-2xl);
+}
+
+.cv h3 {
+  margin: 0 0 var(--space-2xs);
+  font-size: var(--text-xl);
+}
+
+.cv h3 + p {
+  margin-top: 0;
+  color: var(--text-secondary);
+}
+
+.cv ul {
+  max-width: var(--measure);
+  padding-left: var(--space-lg);
+}
+
+.cv li + li {
+  margin-top: var(--space-xs);
+}

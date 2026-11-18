@@ -1,0 +1,221 @@
+/* =========================================================================
+   Site styles
+   Page layout for the home page: full-bleed sections that move from black
+   to light and back, a tall dark hero with widely tracked capitals, and flat
+   project rows. Colour comes from design-system/tokens.css only.
+   ========================================================================= */
+
+body {
+  background: var(--surface-inverse);
+}
+
+/* --- Sections ----------------------------------------------------------- */
+
+.site-section {
+  padding-block: var(--space-section);
+}
+
+.site-dark {
+  background: var(--surface-inverse);
+  color: var(--text-on-dark);
+}
+
+.site-dark p {
+  color: var(--text-on-dark-muted);
+}
+
+.site-dark a {
+  color: var(--interactive-on-dark);
+}
+
+@media (hover: hover) {
+  .site-dark a:hover {
+    color: var(--interactive-on-dark-hover);
+  }
+}
+
+.site-light {
+  background: var(--surface-base);
+  color: var(--text-primary);
+}
+
+.site-centre {
+  text-align: center;
+}
+
+.site-centre p {
+  margin-inline: auto;
+}
+
+.site-section h2 {
+  margin-bottom: var(--space-md);
+  font-weight: var(--weight-medium);
+}
+
+/* --- Nav ---------------------------------------------------------------- */
+
+.site-nav {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: var(--z-sticky);
+}
+
+.site-nav .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm) var(--space-lg);
+  padding-block: var(--space-lg);
+}
+
+.site-nav__name {
+  color: var(--text-on-dark);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-lg);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav ul a {
+  color: var(--text-on-dark-muted);
+  white-space: nowrap;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  text-underline-offset: 0.5em;
+}
+
+@media (hover: hover) {
+  .site-nav a:hover {
+    color: var(--text-on-dark);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* --- Hero --------------------------------------------------------------- */
+
+/* A soft glow over a gradient that falls from grey into black */
+.site-hero {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding-block: var(--space-4xl);
+  background:
+    radial-gradient(ellipse at 50% 20%, var(--surface-inverse-glow) 0%, transparent 60%),
+    linear-gradient(to bottom, var(--surface-inverse-raised) 0%, var(--surface-inverse) 100%);
+  color: var(--text-on-dark);
+  text-align: center;
+}
+
+.site-hero h1 {
+  margin: 0 0 var(--space-lg);
+  font-size: clamp(2.25rem, 1rem + 6vw, 5.5rem);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  line-height: 1.1;
+  /* The trailing letter-spacing pushes the word off centre; this cancels it */
+  margin-right: calc(var(--tracking-display) * -1);
+}
+
+.site-hero p {
+  max-width: 36rem;
+  margin: 0 auto var(--space-2xl);
+  color: var(--text-on-dark-muted);
+  font-size: var(--text-lg);
+}
+
+/* The primary button from the design system, set in the hero's capitals */
+.site-cta {
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* --- Work rows ---------------------------------------------------------- */
+
+.site-work {
+  display: grid;
+  gap: var(--space-2xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-project {
+  display: grid;
+  background: var(--surface-inverse);
+}
+
+@media (min-width: 768px) {
+  .site-project {
+    grid-template-columns: 3fr 2fr;
+  }
+
+  .site-project:nth-child(even) .site-project__image {
+    order: 2;
+  }
+}
+
+/* Placeholder until real project images exist */
+.site-project__image {
+  display: grid;
+  place-items: center;
+  min-height: 18rem;
+  margin: 0;
+  background: linear-gradient(135deg, var(--border-default), var(--border-strong));
+  color: var(--text-primary);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.site-project__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-2xl);
+  color: var(--text-on-dark);
+  text-align: center;
+}
+
+.site-project__text h3 {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-medium);
+}
+
+.site-project__text p {
+  margin: 0 auto;
+  color: var(--text-on-dark-muted);
+  font-size: var(--text-sm);
+}
+
+.site-project__text .site-project__meta {
+  margin-top: var(--space-md);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.site-footer {
+  padding-block: var(--space-xl);
+  background: var(--surface-inverse);
+  color: var(--text-on-dark-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+.site-footer p {
+  margin-inline: auto;
+}

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Components — Colette Nash</title>
+  <meta name="description"
+    content="The component library for Colette Nash's portfolio and the veterinary intake case study: buttons, form fields, cards, alerts, steppers and tables, with accessibility notes.">
+  <script src="../theme.js"></script>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <nav class="ds-nav on-inverse" aria-label="Design system">
+    <div class="container">
+      <a class="ds-nav__home" href="../index.html">Colette Nash</a>
+      <div class="nav-actions">
+        <ul>
+          <li><a href="index.html">Tokens</a></li>
+          <li><a href="components.html" aria-current="page">Components</a></li>
+        </ul>
+        <button class="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false" hidden>
+          <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+          <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-header on-inverse">
+    <div class="container">
+      <p class="eyebrow">Design system</p>
+      <h1>Components</h1>
+      <p class="lede">
+        Built on the token layer, with no hard-coded colour, size or spacing values. Each component
+        lists the accessibility requirements that come with it — the guidance matters as much as
+        the CSS, because a component is only accessible if it is used correctly.
+      </p>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container">
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="buttons">
+        <h2 id="buttons">Buttons</h2>
+
+        <div class="demo">
+          <button class="btn btn--primary" type="button">Primary</button>
+          <button class="btn btn--secondary" type="button">Secondary</button>
+          <button class="btn btn--ghost" type="button">Ghost</button>
+          <button class="btn btn--danger" type="button">Delete record</button>
+          <button class="btn btn--primary" type="button" disabled>Disabled</button>
+        </div>
+
+        <h3>Sizes</h3>
+        <div class="demo">
+          <button class="btn btn--primary btn--sm" type="button">Small</button>
+          <button class="btn btn--primary" type="button">Default</button>
+          <button class="btn btn--primary btn--lg" type="button">Large</button>
+        </div>
+
+        <h4>Usage</h4>
+        <ul class="guidance">
+          <li>One primary button per view. If everything is primary, nothing is.</li>
+          <li>Use <code>&lt;button&gt;</code> for actions and <code>&lt;a&gt;</code> for
+            navigation. Never a div with a click handler.</li>
+          <li>Label with the action, not the confirmation — "Save patient", not "OK".</li>
+          <li>Danger variant is for destructive actions only, and should be paired with a
+            confirmation step.</li>
+          <li>Targets grow to a 44px minimum on touch devices, per WCAG 2.5.5.</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="fields">
+        <h2 id="fields">Form fields</h2>
+
+        <div class="demo demo--stack">
+          <div class="field">
+            <label class="field__label" for="patient-name">
+              Patient name <span class="field__required">(required)</span>
+            </label>
+            <p class="field__hint" id="patient-name-hint">The animal's name as it appears on the record.</p>
+            <input class="input" id="patient-name" type="text" aria-describedby="patient-name-hint"
+              required>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="species">Species</label>
+            <select class="select" id="species">
+              <option>Dog</option>
+              <option>Cat</option>
+              <option>Rabbit</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="weight">Weight</label>
+            <p class="field__hint" id="weight-hint">In kilograms, to one decimal place.</p>
+            <input class="input" id="weight" type="text" value="cat" aria-invalid="true"
+              aria-describedby="weight-hint weight-error">
+            <p class="field__error" id="weight-error">
+              <span aria-hidden="true">✕</span>
+              Enter a weight in kilograms, for example 4.2
+            </p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="presenting">Presenting complaint</label>
+            <textarea class="textarea" id="presenting"
+              placeholder="Describe the reason for today's visit"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="ref">Practice reference</label>
+            <input class="input" id="ref" type="text" value="Auto-generated" disabled>
+          </div>
+        </div>
+
+        <h4>Usage</h4>
+        <ul class="guidance">
+          <li>Every input has a visible <code>&lt;label&gt;</code> tied to it by
+            <code>for</code>/<code>id</code>. Placeholders are not labels — they vanish on typing
+            and fail contrast.</li>
+          <li>Hints and errors are linked with <code>aria-describedby</code> so screen readers
+            announce them with the field, not adrift from it.</li>
+          <li>Required is spelled out. An asterisk means nothing without a legend explaining it.</li>
+          <li>Errors are never signalled by colour alone — the border thickens and a message with
+            an icon appears. This is WCAG 1.4.1.</li>
+          <li>Error text says how to fix the problem, not merely that one exists.</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="choices">
+        <h2 id="choices">Checkboxes and radios</h2>
+
+        <div class="demo demo--stack">
+          <fieldset class="fieldset">
+            <legend class="fieldset__legend">Vaccinations up to date</legend>
+            <div class="choice">
+              <input type="radio" id="vac-yes" name="vac">
+              <label for="vac-yes">Yes</label>
+            </div>
+            <div class="choice">
+              <input type="radio" id="vac-no" name="vac">
+              <label for="vac-no">No</label>
+            </div>
+            <div class="choice">
+              <input type="radio" id="vac-unknown" name="vac" checked>
+              <label for="vac-unknown">Not known</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend class="fieldset__legend">Alerts on file</legend>
+            <div class="choice">
+              <input type="checkbox" id="alert-bite" checked>
+              <label for="alert-bite">Bite risk — muzzle required for handling</label>
+            </div>
+            <div class="choice">
+              <input type="checkbox" id="alert-allergy">
+              <label for="alert-allergy">Known drug allergy</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <h4>Usage</h4>
+        <ul class="guidance">
+          <li>Groups are wrapped in a <code>&lt;fieldset&gt;</code> with a
+            <code>&lt;legend&gt;</code>, so the question is announced along with each option.</li>
+          <li>Radios for one choice from many; checkboxes for none, one or many.</li>
+          <li>The label is clickable, which widens the target well beyond the control itself.</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="alerts">
+        <h2 id="alerts">Alerts</h2>
+
+        <div class="demo demo--stack">
+          <div class="alert alert--info" role="status">
+            <div>
+              <p class="alert__title">Previous visit details recalled</p>
+              <p class="alert__body">Fields carried over from 12 March have been pre-filled. Changed
+                values are highlighted.</p>
+            </div>
+          </div>
+          <div class="alert alert--success" role="status">
+            <div>
+              <p class="alert__title">Intake saved</p>
+              <p class="alert__body">The record is available to the clinical team.</p>
+            </div>
+          </div>
+          <div class="alert alert--warning" role="status">
+            <div>
+              <p class="alert__title">Bite risk on file</p>
+              <p class="alert__body">Muzzle required for handling. Flagged 4 January.</p>
+            </div>
+          </div>
+          <div class="alert alert--danger" role="alert">
+            <div>
+              <p class="alert__title">Could not save</p>
+              <p class="alert__body">The connection dropped. Your entries are kept locally — retry
+                when the connection returns.</p>
+            </div>
+          </div>
+        </div>
+
+        <h4>Usage</h4>
+        <ul class="guidance">
+          <li><code>role="status"</code> announces politely, waiting for a pause.
+            <code>role="alert"</code> interrupts — reserve it for genuine errors.</li>
+          <li>Each variant carries a distinct border and a title, so the meaning survives without
+            colour perception.</li>
+          <li>Say what happened and what to do next.</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="badges">
+        <h2 id="badges">Badges</h2>
+        <div class="demo">
+          <span class="badge">Neutral</span>
+          <span class="badge badge--info">Recalled</span>
+          <span class="badge badge--success">Vaccinated</span>
+          <span class="badge badge--warning">Overdue</span>
+          <span class="badge badge--danger">Bite risk</span>
+          <span class="badge badge--solid">New</span>
+        </div>
+        <h4>Usage</h4>
+        <ul class="guidance">
+          <li>Badges are labels, not buttons. If it is clickable, it is a button or a link.</li>
+          <li>The word carries the meaning; colour only reinforces it.</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="stepper">
+        <h2 id="stepper">Stepper</h2>
+        <p class="note">
+          Used by the "before" version of the intake case study, where the wizard is the problem
+          being demonstrated rather than the solution.
+        </p>
+        <ol class="stepper">
+          <li class="step step--complete">Client</li>
+          <li class="step step--complete">Patient</li>
+          <li class="step step--current" aria-current="step">Complaint</li>
+          <li class="step">Vitals</li>
+          <li class="step">History</li>
+          <li class="step">Consent</li>
+          <li class="step">Review</li>
+        </ol>
+        <h4>Usage</h4>
+        <ul class="guidance">
+          <li>Marked up as an ordered list, because the order is meaningful.</li>
+          <li>The current step carries <code>aria-current="step"</code>.</li>
+          <li>Completed steps must be reachable. A stepper that only moves forward is the
+            anti-pattern this case study exists to criticise.</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="cards">
+        <h2 id="cards">Cards and save state</h2>
+
+        <div class="demo demo--cards">
+          <article class="card">
+            <div class="card__header">
+              <h3 class="card__title">Bramble</h3>
+            </div>
+            <div class="card__body">
+              <p class="alert__body">Border Collie, 6 years. Last seen 12 March for routine
+                vaccination.</p>
+              <p><span class="badge badge--warning">Vaccination overdue</span></p>
+            </div>
+            <div class="card__footer">
+              <button class="btn btn--primary btn--sm" type="button">Start intake</button>
+              <button class="btn btn--ghost btn--sm" type="button">View history</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__header">
+              <h3 class="card__title">Autosave</h3>
+            </div>
+            <div class="card__body">
+              <p class="alert__body">Save state is shown continuously rather than requiring an
+                explicit save click.</p>
+              <p aria-live="polite">
+                <span class="save-state save-state--saved">Saved just now</span>
+              </p>
+              <p aria-live="polite">
+                <span class="save-state">Saving…</span>
+              </p>
+              <p aria-live="polite">
+                <span class="save-state save-state--error">Not saved — retrying</span>
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <h4>Usage</h4>
+        <ul class="guidance">
+          <li>Save state sits in an <code>aria-live="polite"</code> region so the change is
+            announced without stealing focus.</li>
+          <li>Never show "Saved" optimistically. If the write failed, say so.</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section aria-labelledby="tables">
+        <h2 id="tables">Tables</h2>
+        <div class="table-wrap" tabindex="0" role="region" aria-labelledby="table-demo-caption">
+          <table class="table">
+            <caption id="table-demo-caption">Vaccination history for Bramble</caption>
+            <thead>
+              <tr>
+                <th scope="col">Vaccine</th>
+                <th scope="col">Given</th>
+                <th scope="col">Due</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">DHP</th>
+                <td>12 Mar 2025</td>
+                <td>12 Mar 2026</td>
+                <td><span class="badge badge--warning">Overdue</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Leptospirosis</th>
+                <td>12 Mar 2026</td>
+                <td>12 Mar 2027</td>
+                <td><span class="badge badge--success">Current</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Kennel cough</th>
+                <td>04 Jan 2026</td>
+                <td>04 Jan 2027</td>
+                <td><span class="badge badge--success">Current</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h4>Usage</h4>
+        <ul class="guidance">
+          <li>A <code>&lt;caption&gt;</code> tells a screen reader user what the table holds before
+            they enter it.</li>
+          <li><code>scope</code> on every header cell, including row headers.</li>
+          <li>Tables are for data. Never for layout.</li>
+        </ul>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="page-footer on-inverse">
+    <div class="container">
+      <p>Component library — Colette Nash</p>
+    </div>
+  </footer>
+</body>
+
+</html>
